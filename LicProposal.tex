@@ -1,0 +1,172 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage[left=3cm,top=2.5cm,right=2.5cm,bottom=3cm]{geometry}
+
+%Nikola Pakages
+\usepackage[printonlyused]{acronym}
+\usepackage{subfigure}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{verbatim}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{float}
+\usepackage{xspace}
+\usepackage{url}
+%\usepackage{xypic}
+\usepackage{listings}
+\usepackage{longtable}
+%\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsthm}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{array}
+\usepackage{cite}
+\usepackage{epstopdf}
+\usepackage[bookmarks=true, bookmarksnumbered=true,hidelinks]{hyperref}
+%My packages
+\usepackage{textcomp}
+\usepackage[final]{pdfpages}
+\bibliographystyle{unsrt}
+
+
+
+% Start the document
+\thispagestyle{empty}
+
+\begin{document}
+
+% title page
+\begin{center}
+
+\begin{figure}[th]
+    \centering
+		\includegraphics[width=5cm]{pics/logo.jpg}
+	\label{fig:logo}
+\end{figure}
+
+\vspace{4cm}
+
+\LARGE \textbf {LICENTIATE THESIS PROPOSAL} \\[2cm]
+
+\LARGE \textbf {Human Detection and Positioning in Enclosed Environments with Ultra Wideband Radar} \\[2cm]
+
+
+\normalsize{Melika Hozhabri} \\
+School of Innovation, Design and Engineering (IDT) \\
+ITS-EASY Industrial Research School\\
+Embedded Sensor Systems for Health (ESS-H)\\
+M\"{a}lardalen University \\
+melika.hozhabri@mdh.se \\
+November 2016\\
+
+\vspace{3cm}
+
+\begin{minipage}{1.0\textwidth}
+\begin{flushright} \small 
+\textbf{Main Supervisor: Maria Lind\'{e}n} \\
+\textbf{Co-supervisors: Martin Ekstr\"{o}m, Nikola Petrovic}\\
+\textbf{Reviewer: Mats Bj\"{o}rkman}
+
+\end{flushright}
+\end{minipage}
+
+
+\vfill
+
+
+\end{center}
+
+% table of content page
+\newpage
+\pagestyle{plain}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\tableofcontents
+
+
+% abstract page
+\newpage
+
+%\begin{abstract}
+%Hej
+%\end{abstract}
+
+% body of the document
+\newpage
+
+\part{Thesis}
+\newpage
+%
+%--------------------------------------------
+%
+\input{introduction}
+%
+% --------------------------------------------
+%
+\input{relatedWork}
+%
+% --------------------------------------------
+%
+\input{Contribution}
+%
+% --------------------------------------------
+%
+\input{ResearchMethod}
+%
+% --------------------------------------------
+%
+\input{ResearchGoal}
+%
+% --------------------------------------------
+%
+%\input{Ethics}
+%
+%
+
+
+
+\section{Summary and Conclusion}
+
+As this research is performed in collaboration with industry, it faces a real world application where the requirements are well defined and rigid, where a false alarm can be costly in robotic or a mining applications, a missed target means injuries and loss of lives. 
+A successful target detection is a combination of two parts, first the chosen system hardware/technology should able to detect the target under defined requirements for the environment it is intended to be used in. The second part is dealing with the filtering and processing on the acquired data and how efficient they. Because of this the research focus has been to investigate what the system is capable of, it's constraints and processing of the obtained signals. This has so far resulted in two peer-reviewed publications. The areas that have been looked into are radar signal processing in time domain, statistical signal processing and detection theory. There are several challenges for reaching the research goal(see \ref{ResearchGoal}). Based of the last measurements in the office environment and published in paper B the probability of false alarm is around 50 percent. This is not a satisfactory result and needs further investigation. In addition discrimination of a human from other object is not an easy task. Applying the breathing filter to a walking human could not deliver satisfactory results due to the bigger movement of other body parts masking the chest movement. 
+
+\section{Future work}
+Some planned future work before the PhD thesis are listed below:
+\begin{itemize}
+	\item During this research some of the system characteristics such as precision and effect of environment noise in signal detection were measured and defined whereas some other characteristics such as maximum range needs to be measured and defined.
+	\item   Further investigation is needed to figure out how much of the high percentage of the false alarm depends on the signal processing algorithms and how much is system/hardware dependent.
+	\item For discrimination between human and other objects some other types of approaches such as micro doppler processing needs to be tested.
+\end{itemize}
+
+\input{Outlineofthethesis}
+%
+% --------------------------------------------
+\newpage
+\part{Graduate Education}
+% --------------------------------------------
+\newpage
+%
+\input{Progress}
+%
+% --------------------------------------------
+
+
+\newpage
+
+\bibliographystyle{abbrv}
+\bibliography{Licenciate}
+\includepdf[pages=-]{PID4265735.pdf}
+\includepdf[pages=-]{PID4411259.pdf}
+
+\end{document}

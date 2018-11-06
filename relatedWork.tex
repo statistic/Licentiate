@@ -1,0 +1,56 @@
+
+\section{Related Work} 
+In this research first the system characteristics have been thoroughly investigated and measured. Two of the main focused characteristic were the ability of the sensor to differentiate a human body from other materials and the effect of the environment noise on the signal detection. Second, suitable signal processing algorithms has been developed and implemented which can extract features specific to human such as breathing to discriminate a living human from other targets detected by the radar . 
+ 
+\subsection{Human Radar Cross Section }
+To be able to quantify target echo in terms of  the target characteristic, a term called Radar Cross Section(RCS) is defined. The RCS is the projected area of a metal sphere that would return the same echo signal as the target. As mentioned earlier echo of the object depends on the size, material and direction of the incident wave. Radar cross section of the simple bodies can be computed by solving the wave equation, but for more complex objects the exact solution is not computationally feasible. Alternative approaches like method of moments or approximate methods are used. The real world applications can not rely entirely on computations and approximation so the echo measurements shall be done to get a better grasp of reality. This is done by placing the real target or a target model at radar vicinity in free space or an anechoic chamber and measure the reflections\cite{skolnik2008radar}. Dogaru et.al.\cite{Dogaru2007} modeled the radar signature of the human body. They used the human body computer model in various postures in the frequency range of 0.5 GHz to 9 GHz and all azimuth aspect angles. It is observed that for most frequencies, the RCS of the body is in a range between –10 and 0 dBsm, where dBsm is a notation for RCS of a target in decibels; 1 m2 corresponds to 0 dBsm. It also shown that the posture and amount of fat on the body can affect the RCS, but the average remains the same for different postures. One reason for this is because the main contribution of the radar reflection is typically coming from the trunk.
+In \cite{Yamada2005}, N. Yamada et al measured the RCS for a human in a band at 76 GHz. While the RCS is changing with orientation, the average intensity was found to be –8.1 dBsm, and as expected, the front and back produced the largest reflection. It is also shown that the type of clothing being worn can then affect the radar reflection.
+Paper B contains measurements of human and human model backscatter and it is planned to include same type of measurements in paper C.
+
+\subsection{Environment Noise}
+Clutter is all unwanted radar return signals. A part of this research is focusing on highly cluttered environment like mines so it is needed to understand the effect of clutter on signal detection. Clutter in a mine is formed by walls, floors, machineries i.e. by anything but the human in the scenario. Sources of clutter can be out-of-band interference which contains frequencies other than dedicated bandwidth for the system or in-band interference and thermal noise. Ou-of-band interference can be detected and removed by traditional techniques such as Fourier transform and bandpass filter. In-band interference is harder to identify and to remove. Clutter can affect the probability of detection and accuracy. To understand and quantify clutter the statistical properties of the clutter are often used. A statistical radar clutter model for modern high resolution radars is presented in \cite{clutterModel}. Densities such as Weibull or log-normal[\ref{eq:LogNormal}] distributions are shown to provide reasonable fits for measured clutter densities.
+\begin{equation}
+f_X(x;\mu,\sigma) = \frac{1}{ x\sigma \sqrt{2 \pi}}\, e^{-\frac{(\ln x - \mu)^2}{2\sigma^2}},\ \ x>0
+\label{eq:LogNormal}
+\end{equation}
+
+\subsection{Signal Processing}
+%To ease the prototyping and experimentation process the application softwares has a specific architecture. Data acquisition and GUI software are developed in C\# and the signal processing algorithms are developed in Matlab\textsuperscript{TM} then an API connects Matlab\textsuperscript{TM} code to the GUI so after building DLLs it is possible to run the developed algorithms with real system. Matlab\textsuperscript{TM} is a prototyping platform with thousand of ready libraries and function which makes development and testing of algorithms faster. 
+
+In general it is possible to divide the human detection with UWB radar into two categories: Behind obstacles and free space detection. Microwave in lower frequency range can penetrate most building materials whereas the higher frequency waves are capable of detecting small movements such as  breathing or heart beat. Due to the wide band width of UWB radars these two features were combined and UWB radar is used in applications such as police raid operations or rescue operations for searching under rubble after earthquakes. UWB radar is a better candidate than search dogs because search dogs can not differentiate between dead or alive people and can waste valuable time of the rescue team. In police raid operations the knowledge of criminals positions and number inside a building can bring valuable information to the operation\cite{trappedpeople}, \cite{ThroughWallHuman}. 
+%We could easily confirm this by placing a person in front of the radar system breathing normally. The result was filtered with a band-pass filter and the breathing could be detected. Unfortunately it was not possible to use the same algorithm for moving human. The reason could be that the more dominant movement during walking such as moving arms or legs are masking the chest small movement.   
+
+In\cite{SChangUWBHumanDetection} S.Chang et.al used a database to record features in radar return such as cross section size and velocity of the target and used this database to to classify human targets. In \cite{MicroDopplerGaitTahmoush} D. Tahmoush and J. Silvious extract the radar micro doppler signals generated by human motion and extract of gait features from it.
+
+To be able to extract the human target signal, raw radar data passes several signal-processing steps. This signal usually is affected by noise, clutter and attenuation. In UWB radar based systems a big part of of signal processing is done in the time domain rather than frequency domain. In\cite{SignalProcessingSteps} all required phases of the radar signal processing is segmented and described.
+
+\subsubsection{Background Subtraction}
+Background subtraction techniques are used to reduce stationary clutter such as antenna coupling and environment static clutter. 
+Background subtraction techniques could have different complexity based on application, speed accuracy and memory requirement. M. Piccardi in \cite{BackgroundsubtractionVision} provides a review of background removal methods in computer vision application but the same techniques can be applied in radar context. In this thesis two methods were investigated for background subtraction. The first one is concerning detection of static objects, a measurement of the background before the object is placed in radar vicinity is done. The average of the radar frame in every point is removed from the raw radar data after the static object is placed in the radar vicinity. This method has it's drawbacks because it does not consider the shadowing phenomena The existence of the static object will change the reflection from all the other static objects in the scene :
+Background and static object - background $\neq$ static object
+
+The second one deals with detecting moving object. Exponential averaging method is used due to its low complexity and good performance\cite{DetectionMsequenceZetik}. In this method, the clutter estimated from the previous radar sweeps and updates is removed from the actual radar measurement at the moment.
+\begin{equation}
+S_{t} =\alpha .Y_{t} + (1-\alpha).S_{t-1}
+%\label{eq:ExpoAver}
+\end{equation}
+Where $\alpha$ is a coefficient between 0 and 1, $Y_{t}$ is the signal and $S_{t}$ is the exponential average at time t. $S_{1}$ can be set to the first signal value. 
+
+\subsubsection{Detection}
+Detection step is about making a decision between two hypothesis: if the signal scattered from target is absent or present in radar data. In most cases the solution is using statistic theory to test the hypothesis against a threshold. The result of this decision is a binary data where 1 means that the target is probably present in the radar scan and 0 indicates the lack of target. Detection algorithms for UWB radar are discussed in \cite{taylor2000ultra}. Common solution to detection problems are (N,K)-detector\cite{NKDetector}, the interperiod-correlation processing (IPCP) detector\cite{IPCPdetector}and the constant
+false alarm rate(CFAR) detector\cite{NezirovicDetectionTrappedVictims},\cite{CFARDetectionClutter}.
+
+\subsubsection{Localization}
+Time of Arrival(TOA) of the detected target is available in every radar scan. This is the time that it takes for the wave to travel from the transmitter to the target and scattered back again to the receiver. The one dimentional location is calculated by equation \ref{eq:TOA}. 
+\begin{equation}
+\label{eq:TOA}
+	\textnormal{Distance to the target} = \frac{TOA * C}{2}
+\end{equation}
+where C is the speed of light.
+For 3D position estimation in a coordinate system at least 4 anchor nodes are needed otherwise the ambiguity will occur. Position estimation methods can be divided into two categories: iterative and non-iterative methods\cite{UWBLocalization}. Direct Method(DM)\cite{LocalizationDM}, Least Square(LS)\cite{leastSquaresLocalization} and Spherical Interpolation(SI)\cite{SphericalInterpolation} are some of the non-iterative approaches to solve position estimation problems. Taylor Series method is an example of iterative approach for localization\cite{LocalizationTaylorSeries}.
+
+\subsubsection{Tracking}
+Tracking algorithms are often used to increase the precision of the localization results for moving targets. Most of the tracking algorithms can make an educated guess about target's next position and reduce the measurement's uncertainty and smoothen the target trajectory. Kalman filter, linear least square and particle filter are widely used in this application\cite{KalmanTracking},\cite{ParticleFilter}.
+
+%localization and tracking with radar sensors can be device free or with active or passive tags 
+
