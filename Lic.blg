@@ -1,0 +1,38 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: LicProposal.aux
+The style file: unsrt.bst
+Illegal, another \bibstyle command---line 92 of file LicProposal.aux
+ : \bibstyle
+ :          {abbrv}
+I'm skipping whatever remains of this command
+Database file #1: Licenciate.bib
+Warning--I didn't find a database entry for "InfraredHumanDetection"
+Warning--I didn't find a database entry for "VisualSurveillanceBoult"
+Warning--I didn't find a database entry for "Visualhumandetection"
+Warning--I didn't find a database entry for "VibrationTracking"
+Warning--I didn't find a database entry for "AcousticsHumanDetection"
+Warning--I didn't find a database entry for "YarovoyUWBHumanDetection"
+Warning--I didn't find a database entry for "RadarVisionfusion"
+Warning--I didn't find a database entry for "skolnik2008radar"
+Warning--I didn't find a database entry for "taylor2000ultra"
+Warning--I didn't find a database entry for "sachs2003stimulation"
+Warning--I didn't find a database entry for "clutterModel"
+Warning--I didn't find a database entry for "trappedpeople"
+Warning--I didn't find a database entry for "ThroughWallHuman"
+Warning--I didn't find a database entry for "SChangUWBHumanDetection"
+Warning--I didn't find a database entry for "MicroDopplerGaitTahmoush"
+Warning--I didn't find a database entry for "SignalProcessingSteps"
+Warning--I didn't find a database entry for "BackgroundsubtractionVision"
+Warning--I didn't find a database entry for "DetectionMsequenceZetik"
+Warning--I didn't find a database entry for "NKDetector"
+Warning--I didn't find a database entry for "IPCPdetector"
+Warning--I didn't find a database entry for "NezirovicDetectionTrappedVictims"
+Warning--I didn't find a database entry for "CFARDetectionClutter"
+Warning--I didn't find a database entry for "UWBLocalization"
+Warning--I didn't find a database entry for "LocalizationDM"
+Warning--I didn't find a database entry for "leastSquaresLocalization"
+Warning--I didn't find a database entry for "SphericalInterpolation"
+Warning--I didn't find a database entry for "LocalizationTaylorSeries"
+Warning--I didn't find a database entry for "KalmanTracking"
+Warning--I didn't find a database entry for "ParticleFilter"
+Warning--there's a number but no volume in Dogaru2007
+(There was 1 error message)

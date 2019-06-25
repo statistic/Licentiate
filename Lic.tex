@@ -1,0 +1,201 @@
+\documentclass[doctoral,vasteras,idt]{mdhthesis}
+
+\usepackage{graphics}
+% \usepackage{epstopdf}
+% \usepackage[bookmarks=true, bookmarksnumbered=true,hidelinks]{hyperref}
+%\usepackage{times}    % <- remove?
+% \usepackage[printonlyused]{acronym}
+% \usepackage{subfigure}
+% \usepackage{tabularx}
+% \usepackage{tabulary}
+% \usepackage{verbatim}
+% \usepackage{multicol}
+% \usepackage{longtable}
+% \usepackage{lscape}
+% \usepackage{float}
+% \usepackage{xspace}
+% \usepackage{url}
+% \usepackage{xypic}
+% \usepackage{longtable}
+% \usepackage{hyperref}
+% \usepackage{multirow}
+% \usepackage{rotating}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{amsthm}
+% \usepackage[ruled,vlined]{algorithm2e}
+% \usepackage{array}
+% 
+
+
+%,hidelinks linktocpage
+%\usepackage{breakurl}
+%\usepackage[breaklinks]{hyperref}
+%\usepackage[noadjust]{cite}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[swedish]{babel}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage[swedish]{babel}
+
+%\usepackage{pdfpages}
+
+
+%\usepackage[pdflatex]{hyperref}
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+% \makeatletter
+% \def\url@leostyle{%
+%   \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+% \makeatother
+% %% Now actually use the newly defined style.
+% \urlstyle{leo}
+
+% %\newcommand{\progress}{\textsc{Progress}\xspace}
+% \newcommand{\progress}{{\sc Progress}\xspace}
+% \newcommand{\remes}{{\sc Remes}\xspace}
+% \newcommand{\charon}{{\sc Charon}\xspace}
+% \newcommand{\kronos}{{\sc Kronos}\xspace}
+% \newcommand{\giotto}{{\sc Giotto}\xspace}
+% \newcommand{\hytech}{{\sc Hytech}\xspace}
+% \newcommand{\bip}{{\sc Bip}\xspace}
+% \newcommand{\uppaal}{{\sc Uppaal}\xspace}
+% \newcommand{\cora}{{\sc Cora}\xspace}
+% \newcommand{\pride}{\textsc{Pride}\xspace}
+% \newcommand{\diam}{{\sc Diameter}\xspace}
+% \newcommand{\rb}[1]{\raisebox{1.0ex}{#1}}
+
+\title{Measurement System for Microwave Imaging Towards a Biomedical Application}
+\thesisnr{157}
+\issn{1651-4238}
+\isbn{978-91-7485-146-5}
+\name{Nikola Petrovi\'{c}}
+\year{2014}
+\month{May}
+\department{School of Innovation, Design and Engineering}
+%\makeglossary
+
+%\renewcommand{\citedash}{--}
+%My packages
+% \usepackage{textcomp}
+\usepackage[final]{pdfpages}
+\bibliographystyle{unsrt}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage[labelfont=bf]{caption} % optional
+\usepackage{ragged2e}
+%table color
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{rotating}
+\usepackage{listings}
+%\usepackage{csvsimple}
+% %remove zeroes in title 
+% \renewcommand{\thesection}{\arabic{section}}
+%remove this after the final, it changes the first page
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+% title page
+\title{Human Detection and Tracking with UWB radar}
+\thesisnr{?}
+\issn{1?}
+\isbn{?}
+\name{Melika Hozhabri}
+\year{2019}
+\month{June}
+\department{School of Innovation, Design and Engineering}
+% Start the document
+
+
+\begin{document}
+\include{Dedication}
+ \blankpages
+ 
+\begin{prefacepart}
+ %
+ %\blankpages
+\input{Abstract}
+\blankpages
+
+ \input{sammandrag}
+ \blankpages
+
+ \include{Preface}
+ \blankpages
+ %
+% \include{IncludedPapers}
+% Paper A
+% \blankpages
+% %
+ \end{prefacepart}
+%
+\begin{mainpart}
+
+% table of content page
+\newpage
+\pagestyle{plain}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\tableofcontents
+
+
+% abstract page
+\newpage
+
+%\begin{abstract}
+%Hej
+%\end{abstract}
+
+% body of the document
+%
+%--------------------------------------------
+%
+\input{introduction}%
+%
+
+% --------------------------------------------
+%
+\input{relatedWork}
+%
+% --------------------------------------------
+%
+\input{SystemEvaluationandDesign.tex}
+%
+% --------------------------------------------
+%
+\input{Contribution}
+%
+% --------------------------------------------
+%
+\input{ConclusionAndFutureWork.tex}
+%
+%---------------------------------------------
+%
+%
+\input{Discussion.tex}
+%
+%---------------------------------------------
+%\input{Ethics}
+%
+%
+%
+\newpage
+\bibliographystyle{abbrv}
+\bibliography{Licenciate}
+\includepdf[pages=-]{PID4265735.pdf}
+\includepdf[pages=-]{PID4411259.pdf}
+\includepdf[pages=-]{PID.pdf}
+\end{mainpart}
+\end{document}

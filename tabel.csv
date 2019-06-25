@@ -1,0 +1,19 @@
+Paper,Background subtraction,detection,LOS or behind obstacles,Hardware,Model?,Distance ,Antenna,Localozation,Tracking,Static or dynamic
+Chang2009,MTI,MTT and hypothseis testing,"LOS, differentiate between cars and human",Time Domain PulsOn 210,SMPM,0.3 -12.2 m,Time Domain,TOA,"multi-target tracking
+(MTT)",
+Kilic2013,subtracting average,Liklihood test,LOS,"Time Domain Corp. P400 RCM, 5 radios",yes,18 different positions 50 cm apart,,"threshold
+crossing , the line search method",no?,
+BryanClassification,Removing when there is no target,"Peak, PCA ,FFT and SVM","LOS, behind wall",P220 time domain,no,1–7 m.,Horn antennas,N,no,
+Rane,IIR,"preprocessed range profile, peak of STA/LTA along range profile","InLOS, concrete wall and door","UWB (PulsON 410), Time Domain",no,6m,,,,
+,"bandpass filter , weighted Range Profile Subtraction",,,,,,,,,
+OSSBERGER,Removing average,wavelet transform,"Respiratory,",Pulse generator ,,"1 m, 2 m, 2.5 m, 5 m",Horn ,,,
+,,,"Through wall, LOS (5m)",,,,,,,
+Nezirovic2010,linear least-squares,"RMD, SVD",pile of bricks and a concrete pipe,UWB m-sequence,,1.6 m,Large horn antennas,,,
+,Fit,,,,,,,,,
+Rovnakova,Exponential averaging,CFAR,Behind wall,M-sequence UWB,,"Different, max 3 m",,TOA,Kalman Filter,
+RovnakovaSignalProcessing,,,,,,,,,,
+Sachs2008,High-pass adaptive filtering ,CFAR,under rubble,M-sequence UWB,,,spiral,CFAR,no,
+Zetik,adaptive exponetioal averaging,no,Behind wall,M-sequence UWB,,,,TOA,,
+Shingu,no,no,no,simulation. ,simulation,max 6 m,horn,,,
+Zhao,,HMM,Foliage and wall,P220 UWB,,"The target is a 1.5 ,meter trihedral metal reector placed at 600 ft round trip distance and 30-cm thick gypsum wall with 6.5 feet to UWB radar",,no,,
+,,,,,,,,,,

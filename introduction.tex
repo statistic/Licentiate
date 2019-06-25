@@ -1,48 +1,82 @@
-\section{Introduction}
-Recent advances in information technology makes it possible to create an awareness of the environment, which includes to detect and respond to the presence of a human. This might be done due to variety of reasons, such as security applications like intruder detection and collision avoidance, safety applications such as avalanche and rubble search and rescue missions, police raid operations, driving assistance, elderly care and living assistance for Alzheimer patients.
-Depending on the application there are different requirements of the detection and sensing. Examples include pure determination of presence or specifying the location, tracking or identification. This theses focuses on the determination of presence and localization of human in enclosed environments. 
+\chapter{Introduction}
+\label{Introduction}
+Recent advances in technology makes it possible to create an awareness of the environment, which includes detecting and responding to the presence of a human. Meanwhile human-machine interaction is becoming more important in industry and new requirements emerge which aim at humans can safely collaborate with robots and machines. Positioning technologies such as Global Positioning System (GPS) has limited coverage in indoor environment therefore techniques such as infrared detectors, vision based systems, vibration and seismic sensors, acoustics sensors, and, radar systems are used to achieve human detection indoors. 
+%Human detection and tracking has different application areas including pedestrian detection and collision avoidance, surveillance, rescue operations and, fall detection \cite{ElderySachs}.
+%as well as reducing accidents and injuries. 
+\todo{In recent years the emerging market for autonomous vehicles ?? }
+Several efforts has been done for detection of targets with UWB radar in \cite{ChangMHTC,Kilic2013,Shingu2008,Sachs2008}. Because UWB radar has the capability to penetrate most common building material, many researchers aimed at detection and tracking of humans behind walls for surveillance and rescue operations \cite{RaneMovintargetUWB,Zetik,Nezirovic2010, Rovnakova2013,ZhaoHMM}. 
 
-While machineries are becoming important in the industry, new requirements emerge, one is to allow humans to safely collaborate with robots and machines. This will increase the efficiency of sites and reduce accidents and injuries. Techniques such as infrared detectors\cite{InfraredHumanDetection}, vision based systems\cite{VisualSurveillanceBoult},\cite{Visualhumandetection}, vibration and seismic waves\cite{VibrationTracking}, acoustics\cite{AcousticsHumanDetection} and radar sensors\cite{YarovoyUWBHumanDetection} are used as a solution to human detection problem.
+Detection might have slightly different meaning based on the context. For example in an airport it might mean to identify a suspect versus in other context such as autonomous vehicles it might mean differentiating between a human and other objects such as another vehicle. In this thesis, the term “human detection” refers to the detection of a target of a human nature.
+\todo{write my own contribution}
+%Traditionally vision based sensors are used for device-free localization but they suffer from limitations 
 
-Some systems are built based on the fusion of these sensors to take advantage of each sensor strength to increased confidence of detection and decrease false alarms.
-In\cite{RadarVisionfusion} Milch and Behrens used radar-vision fusion for detecting pedestrians on-board a moving vehicle. Radar sensor is used to generate a target list or hypotheses for presence of pedestrians. In the next step vision system is used to prove the hypotheses, if the target is a pedestrian. 
+\section{Motivation}
+Safety is an important consideration in human-machine interactions. Industrial machines can move or have moving parts that can cause hazards to humans surrounding them. Hazardous industrial machines and operators are sometimes separated by barriers to avoid any contact between them and as a consequence the productivity of the site reduces \cite{AutomotiveRadarPatole}. Most state of the art machineries and robots are equipped with sensors for collision avoidance such as laser scanners, cameras, and, infrared sensors \cite{RadarColaborativeRobotZlatanski}. These systems are used for detection of objects and obstacles, their position and, their relative speed to the machine or robot \cite{AutomotiveRadarPatole}. They are performing reliably in some conditions but suffer from a number of limitations because of optical technology they rely on. Some factors such as large open areas, fog, smoke, dust, dirt, condensation, lighting conditions, and reflections may cause faulty sensor values. In addition, visual, infrared, and seismic sensors need to be placed in close proximity to the target whereas radar sensors depend on frequency of the operation can function up to several hundred meters.
 
-Human detection using radar has advantages such as the ability to function in all lightning conditions whereas visual, infrared and laser sensors are prone to fog, smoke, dirt, environment’s lighting conditions or temperature changes. In addition visual, infrared, and seismic sensors need to be placed in close proximity to the target whereas radar senors depend on frequency of the operation can function up to several hundred meters.
 
-The human detection with radar has two main tasks: first the target shall be detected then it shall be decided if the detected target is a human or not. It has been different approaches in how to discriminate a human target from the other detected targets. In many of sensor fusion solutions that radar is a part of, other types of sensors are responsible for the determination whether the target is a human or not because the radar is considered to be incapable of making such decisions. The problem with this approach is that the benefits of radar sensors are not fully taken advantage of. This thesis is aiming at using the radar sensor as a stand alone solution for the whole human detection problem. This means that both detection and discrimination of the human from other targets is performed by the radar sensor. 
-  
-\section{Background}
+% \section{Introduction to Radar}
+% The history of radio detection and ranging (radar), starts with the experiments carried out by Hertz and H\"{u}lsmeyer on the reflections of electromagnetic waves and ideas advocated by Tesla and Marconi. Radar technology was initially used in military applications such as surveillance, navigation, and weapons  guidance.  Radar  is  now  used  in  many  applications,  including  civilian  aviation,  navigation,  mapping,  meteorology,  radio  astronomy, collision avoidance ,and  medicine 
 
-Radar (RAdio Detection And Ranging) uses electromagnetic waves from a transmitter and when it interacts with an object a part of it reflects, absorbs and scatters depend on the frequency of wave, the shape and material of the object and the orientation of the incident wave. The reflected wave is different from the transmitted wave in frequency, time delay and amplitude. The frequency shift is the result of the Doppler effect due to the relative speed of the radar and the target. The time delay is due to the time it takes for the waves to travel from the radar transmitter to the object and back again. Attenuation of the signal is a result of path loss over the traveling distance by the wave. The received signal power by the radar is defined by the radar equation \ref{eq:radareq}.
-\begin{equation}\label{eq:radareq}
-	P_{r}= \frac{P_{t} G_{t}}{4\pi R^{2}}\times\frac{\sigma}{4\pi R^{2}}\times A_{e}
-\end{equation}
+% Radar uses electromagnetic waves from a transmitter and when it interacts with an object a part of it reflects, absorbs and scatters depend on the frequency of wave, the shape and material of the object and the orientation of the incident wave. The reflected wave is different from the transmitted wave in frequency, time delay and amplitude. The frequency shift is the result of the Doppler effect due to the relative speed of the radar and the target. The time delay is due to the time it takes for the waves to travel from the radar transmitter to the object and back again. Attenuation of the signal is a result of path loss over the traveling distance by the wave. The received signal power by the radar is defined by the radar equation \ref{eq:radareq}.
+% \begin{equation}\label{eq:radareq}
+% 	P_{r}= \frac{P_{t} G_{t}}{4\pi R^{2}}\times\frac{\sigma}{4\pi R^{2}}\times A_{e}
+% \end{equation}
 
-The equation is written based on the product of three factors: The first fraction in equation \ref{eq:radareq} represents the power density at distance R from a radar that transmits with the power of $P_{t}$ from an antenna with the gain of $G_{t}$. The second fraction contains $\sigma$ which is radar cross section of the target and is the measure of the energy reflected from the target back to the radar. The last term in equation \ref{eq:radareq} is  $A_{e}$ which is the receiving antenna effective area\cite{skolnik2008radar}. 
+% The equation is written based on the product of three factors: The first fraction in equation \ref{eq:radareq} represents the power density at distance R from a radar that transmits with the power of $P_{t}$ from an antenna with the gain of $G_{t}$. The second fraction contains $\sigma$ which is radar cross section of the target and is the measure of the energy reflected from the target back to the radar. The last term in equation \ref{eq:radareq} is  $A_{e}$ which is the receiving antenna effective area \cite{sko}
 
-%The difference between traditional radio technolgy and ultra wide band
-The majority of traditional radar system are based on a narrow band signal modulated on a sinusoidal carrier wave. The amount of information that this radio systems can carry is limited due to limited bandwidth. To increase the information amount wide band and Ultra Wide Band(UWB) signals shall be chosen. This is possible due to usage of the narrower pulse in order of nano seconds, which will increase the accuracy of target range and the ability to detect smaller targets and more detailed information about them. In addition it will reduce the passive interference from for example rain and other particles due to relative reduction of scattering cross section of interference to the target\cite{taylor2000ultra}.
-
+%The difference between traditional radio technology and ultra wide band
 %Narrow band radar systems use sinusoidal signals which tend to keep their shape during signal conversions such as addition and differentiation. Because ultra wideband signals has different waveform the shape can change during signal conversion.(This part shall be added later in the licentiate)
 
-%why UWB is better that other radar systems
-UWB technology is a promising technology due to high spatial resolution and obstacle penetration capabilities. Over the past two decades the advancements in electronics made it possible to develop UWB radar system with advantages to other conventional technologies\cite{UWBHussain}.
-
-Based on Federal Communications Commission (FCC) definition a signal can be defined as UWB signal if the fractional band with is greater than 0.2 where fractional bandwidth is defined in equation \ref{FracBW}.
-\begin{equation}\label{FracBW}
-	B_{f} = 2\frac{f_{H}-f_{L}}{f_{H}+f_{L}}
-\end{equation}
-%Some active localization system require the person carry a radio-frequency tag
-%The disadvantage is that the data is not possible to be visualized for a human eye contra vision system
-%detection relies on the back-propagation of the signal from the body
-Different types of UWB radar are developed and based on the excitation wave-form they are divided to different categories. Three of the most prominent categories are Frequency Modulated Continuous Wave (FMCW), pulse and M-sequence. In this research we have access to a commercially available M-sequence UWB radar which is developed in Radarbolaget. Radarbolaget is positioned in G\"{a}vle, Sweden developing radar
-systems primarily for real time, through wall monitoring of heating furnaces \footnote{http://www.radarbolaget.com}.To be able to understand the system constraint a comparison study between UWB M-sequence and pulse is done in paper A. The pulse radar belonged to Time Domain\textsuperscript{TM}, one of the leading companies in developing UWB radar and communication systems \footnote{http://www.timedomain.com}. Sachs et. al. compared pulse and M-sequence for UWB technology in\cite{sachs2003stimulation}. Based on technical specifications of each system it is reasoned that the pulse based
-UWB systems are desirable in applications with simple data interpretation and low power consumption versus the M-sequence based approach needs more complicated data processing but provides highly stable data.
 
 
 %As humans are made of 70\% water a good part of this waves reflect back to the receiver. 
-%The frequency of th radar also can determine the size of the detectable object. The lower the wave length the smaller the detectable object. traditional radar devices send a wave with a small frequency band and in the receiver the reflected signal can be processed and filtered by that specific frequency.
+%The frequency of the radar also can determine the size of the detectable object. The lower the wave length the smaller the detectable object. traditional radar devices send a wave with a small frequency band and in the receiver the reflected signal can be processed and filtered by that specific frequency.
 %the goal of research questions or 
 %research challenges are sensing noise, environment variation\cite{Teixeira2010}.
 %different types of clothing, hats, backpacks, purses, and\cite{Dogaru2007} \cite{Yamada2005}
-.
+% --------------------------------------------
+%
+%
+% --------------------------------------------
+%
+%
+% \section{Problem Formulation}\todo{I guess this is not very convincing for problem formulation. i have to expand what the problems is like why do we need this system, fatality rate and other things}
+
+% \label{ProblemFormulation}
+% This research project is defined based on a need in industry for protecting people working with machines and robots. A potential solution based on UWB radar system developed at Radarbolaget is chosen by engineers at Addiva AB.
+
+% It is necessary in every research project to define a scope so it is clear how broad work has been done. The vision for this project was to make human-machine interaction safer and more accessible. Some activities such as adopting an industrial product, designing and coding the data processing and data acquisition system and many measurements that are mainly for understanding how the system works are not research per say yet educational and necessary. Main part of this research is based on reading on human detection with radar in state of the art literature and performing experimental measurements to show the proof of concept with this particular type of radar which is the main subject for paper A and B. 
+
+% Working with radars involves one partially in physics and mathematics of wave propagation and wave interaction with different materials and shapes. To be able to perform repeatable measurements with human, a phantom is produced in paper C where the phantom expect to create a similar cross section as a human torso. The measurement is repeated with a human in radar's vicinity. 
+\section{Problem Formulation}
+\label{ProblemFormulation}
+The purpose of this research is to develop a system for protecting humans around hazardous machinery in environments such as mines where conditions such as lack of light, dirt and fog cause problems with other technologies. This feature is needed in industries where safety requirements around automatic machineries are getting more stringent. 
+%Of course the same technique can be used in other  applications such as pedestrian collision protection in self driving cars.
+The research goal for this thesis is:
+
+\textit{"To evaluate a wireless system and to develop signal processing algorithms able to detect and localize humans in enclosed environments."}
+
+\subsubsection{Research Questions}
+This general goal can be split up into the following research questions.
+\begin{enumerate}
+\item [RQ1] {\textbf{What are the UWB radar system characteristics and constraints in human detection applications?}}
+
+The system needs to be carefully analysed with regards to its throughput and its limitations. Signal and noise characteristics need to be obtained by carefully planned measurements in different environments. Furthermore understanding the characteristics of the background noise will help to know how much it will affect the signal detection.
+
+\item[RQ2] {\textbf{What are the most appropriate signal processing algorithms to be used for detection of humans, using the chosen sensor system?}}
+
+There are some decisions to be made such as what and how many features shall be extracted. Processing power and computational complexity can affect which algorithms and in which order they shall be used. The algorithms shall be examined in terms of false alarms and missed detection.
+\item[RQ3] {\textbf{Is it possible to make a phantom of a human in order to obtain controlled conditions in measurements?}}
+
+In measurement of real humans, the results may vary based on the body size, orientation, posture and, clothing. Performing measurements with a  phantom of human body reduces the unwanted variabilities of real human measurements. Which material combinations and geometry can mimic a radar cross section of a human? 
+\end{enumerate}
+\section{Research Method}
+
+This work started by a thorough literature review in order to know the state of the art and to recognize the requirements and challenges. In addition, collaborations between Addiva AB and industrial partners in robotics and mining industry helped us to achieve a better understanding of the real world challenges that each particular industry is facing.
+One prerequisite of the work was to use an already existing hardware system for the UWB radar. A part of this research is about understanding the hardware, its advantages and limitations.
+
+The research method used in this thesis is an induction method. It means that the experimental results lead to forming a theory. Series of experiments are performed and collected data are analyzed. This resulted in scientific papers and better understanding of the system. This has been an iterative process as each result led to more knowledge which in turn resulted in new literature studies and set of experiments.\todo{make a flow chart it there is time}
+\footnote{This research is partly financed by Vinnova: Diarienummer 2014-00484} \todo{put this in a more appropriate place}    
+% The research goal is solving concrete problem so identifying the research goal was the first step.  
+
+The first step in the research process is to thoroughly investigate and measure the system characteristics. This includes investigating the ability of the sensor to differentiate a human body from other objects and to measure the effect of the environment noise on the signal detection. Thereafter, suitable signal processing algorithms are developed and implemented. 
